@@ -1,6 +1,6 @@
-[submodule ".config/nvim"]
-	path = .config/nvim
-	url = https://github.com/rclgs/config-nvim.git
 [submodule ".config/tmux"]
 	path = .config/tmux
 	url = https://github.com/rclgs/config-tmux.git
+[submodule "config/nvim"]
+	path = config/nvim
+	url = https://github.com/rclgs/config-nvim
