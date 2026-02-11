@@ -1,0 +1,20 @@
+# Prompt Updates
+export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\]\n\$ '
+export PROMPT_DIRTRIM=3
+
+
+# Git customizations
+## Prerequisite:
+##   - clone https://github.com/git/git.git to $HOME/.local/share
+##   - checkout to tag with same Git version
+if [[ -d $HOME/.local/share/git ]]; then
+    git_version="v$(git --version | awk '{print $3}')"
+    git clone --depth 1 --branch $git_version https://github.com/git/git.git $HOME/.local/share/git
+fi
+
+if [[ -s $HOME/.local/share/git/contrib/completion/git-prompt.sh ]]; then
+    source $HOME/.local/share/git/contrib/completion/git-prompt.sh
+    ## Customize PS1 to include Git information
+    export PS1='${debian_chroot:+($debian_chroot)}\[\033[01;34m\]\w\[\033[00m\]$(__git_ps1 " (%s)")\n\$ '
+    export GIT_PS1_SHOWDIRTYSTATE=1
+fi
